@@ -1,0 +1,1 @@
+pm2 delete v1re && pm2 start start.js --name v1re

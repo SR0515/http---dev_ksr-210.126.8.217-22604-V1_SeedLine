@@ -1,0 +1,222 @@
+/* 기존 시스템의 CSS 구조를 SvelteKit에 맞게 통합 */
+
+/* Reset & Base */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	background-color: #f8f9fa;
+	color: #333;
+	line-height: 1.6;
+}
+
+/* 기존 시스템과 동일한 컨테이너 스타일 */
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+
+/* 폼 요소 기본 스타일 */
+.input {
+	width: 100%;
+	padding: 0.75rem;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 1rem;
+	transition: border-color 0.3s;
+}
+
+.input:focus {
+	outline: none;
+	border-color: #3498db;
+	box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+.select {
+	width: 100%;
+	padding: 0.75rem;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 1rem;
+	background-color: white;
+	cursor: pointer;
+}
+
+/* 버튼 스타일 */
+.btn {
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 4px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all 0.3s;
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+}
+
+.btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.btn-primary {
+	background-color: #3498db;
+	color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+	background-color: #2980b9;
+}
+
+.btn-success {
+	background-color: #27ae60;
+	color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+	background-color: #219a52;
+}
+
+.btn-danger {
+	background-color: #e74c3c;
+	color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+	background-color: #c0392b;
+}
+
+.btn-warning {
+	background-color: #f39c12;
+	color: white;
+}
+
+.btn-warning:hover:not(:disabled) {
+	background-color: #e67e22;
+}
+
+.btn-secondary {
+	background-color: #95a5a6;
+	color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+	background-color: #7f8c8d;
+}
+
+/* 테이블 스타일 */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: white;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+	padding: 0.75rem;
+	text-align: left;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.table th {
+	background-color: #f8f9fa;
+	font-weight: 600;
+	color: #495057;
+}
+
+.table tbody tr:hover {
+	background-color: #f8f9fa;
+}
+
+/* 카드 스타일 */
+.card {
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	padding: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.card-header {
+	border-bottom: 1px solid #e9ecef;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+
+.card-title {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #2c3e50;
+	margin: 0;
+}
+
+/* 기존 시스템의 파트너 등급 색상 */
+.upper_1_point { color: #ff0000; font-weight: bold; }
+.upper_2_point { color: #ff6600; font-weight: bold; }
+.upper_3_point { color: #ff9900; font-weight: bold; }
+.upper_4_point { color: #ffcc00; font-weight: bold; }
+.upper_5_point { color: #99ff00; font-weight: bold; }
+.upper_6_point { color: #66ff00; font-weight: bold; }
+.upper_7_point { color: #33ff00; font-weight: bold; }
+.upper_8_point { color: #00ff33; font-weight: bold; }
+.upper_9_point { color: #00ff66; font-weight: bold; }
+.upper_10_point { color: #00ff99; font-weight: bold; }
+.upper_11_point { color: #00ffcc; font-weight: bold; }
+.upper_12_point { color: #00ffff; font-weight: bold; }
+
+/* 상태 색상 */
+.status-normal { color: #27ae60; font-weight: 600; }
+.status-suspended { color: #e74c3c; font-weight: 600; }
+.status-withdrawn { color: #95a5a6; font-weight: 600; }
+.status-error { color: #e74c3c; font-weight: 600; }
+
+/* 유틸리티 클래스 */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+
+.d-flex { display: flex; }
+.align-items-center { align-items: center; }
+.justify-content-between { justify-content: space-between; }
+.justify-content-center { justify-content: center; }
+
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 1rem; }
+
+/* 반응형 */
+@media (max-width: 768px) {
+	.container {
+		padding: 0 0.5rem;
+	}
+	
+	.table {
+		font-size: 0.9rem;
+	}
+	
+	.btn {
+		padding: 0.5rem 1rem;
+		font-size: 0.9rem;
+	}
+}

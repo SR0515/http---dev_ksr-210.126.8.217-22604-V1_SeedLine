@@ -1,0 +1,178 @@
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import LogsSearch from '$lib/components/logs/LogsSearch.svelte';
+    import LogsPagination from '$lib/components/logs/LogsPagination.svelte';
+    import LogsErrorBoundary from '$lib/components/logs/LogsErrorBoundary.svelte';
+    import LogsLoadingSpinner from '$lib/components/logs/LogsLoadingSpinner.svelte';
+    import { commissionLogsStore } from '$lib/stores/logsStore';
+    import { formatNumber } from '$lib/utils/formatters';
+    import type { CommissionLogData, LogSearchParams } from '$lib/types/logs';
+    
+    // 스토어 구독
+    $: ({ data: logLists, loading, error, pagination, searchParams } = $commissionLogsStore);
+    
+    // API 엔드포인트
+    const API_ENDPOINT = '/api/log/StoreCommissionLog';
+    
+    // 검색 실행
+    function handleSearch() {
+        const params: LogSearchParams = {
+            searchSelect: searchParams.searchSelect,
+            searchText: searchParams.searchText,
+            startDate: searchParams.startDate,
+            endDate: searchParams.endDate
+        };
+        commissionLogsStore.search(API_ENDPOINT, params);
+    }
+    
+    // 검색 초기화
+    function handleReset() {
+        commissionLogsStore.reset(API_ENDPOINT);
+    }
+    
+    // 페이지 크기 변경
+    function handlePageSizeChange() {
+        commissionLogsStore.changePageSize(API_ENDPOINT, pagination.pageSize);
+    }
+    
+    // 페이지 이동
+    function handlePageChange(page: number) {
+        commissionLogsStore.changePage(API_ENDPOINT, page);
+    }
+    
+    // 재시도 함수
+    function handleRetry() {
+        commissionLogsStore.loadData(API_ENDPOINT, searchParams);
+    }
+    
+    onMount(() => {
+        commissionLogsStore.loadData(API_ENDPOINT, searchParams);
+    });
+</script>
+
+
+<!-- 검색 영역 -->
+<LogsSearch 
+    bind:searchSelect={searchParams.searchSelect}
+    bind:searchText={searchParams.searchText}
+    bind:startDate={searchParams.startDate}
+    bind:endDate={searchParams.endDate}
+    bind:pageSize={pagination.pageSize}
+    onSearch={handleSearch}
+    onReset={handleReset}
+    onPageSizeChange={handlePageSizeChange}
+    searchOptions={[
+        { value: 'store_name', label: '가맹점명' },
+        { value: 'store_catid', label: 'TID' },
+        { value: 'editor_ip', label: 'IP' }
+    ]}
+    showTypeSelect={false}
+/>
+
+<!-- 로딩 및 에러 상태 -->
+<LogsLoadingSpinner {loading} message="가맹점 수수료 수정 로그 데이터를 불러오는 중..." />
+<LogsErrorBoundary {error} onRetry={handleRetry} />
+
+<!-- 테이블 영역 -->
+<section class="borderbox_table">
+    <div id="table_wrap" class="table_wrap">
+        <table class="table_list" width="100%">
+            <caption>가맹점 정산수수료 수정 로그 테이블</caption>
+            
+            <colgroup>
+                <col style="width: 3.67% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 8.67% !important;">
+                <col style="width: 8.67% !important;">
+                <col style="width: 9.67% !important;">
+                <col style="width: 9.67% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 14% !important;">
+            </colgroup>
+            
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>가맹점아이디</th>
+                    <th>가맹점명</th>
+                    <th>TID</th>
+                    <th>본사 수수료 변동(%)</th>
+                    <th>대행사 수수료 변동(%)</th>
+                    <th>에이전시 수수료 변동(%)</th>
+                    <th>가맹점 수수료 변동(%)</th>
+                    <th>수정 관리자명</th>
+                    <th>IP</th>
+                    <th>브라우저</th>
+                    <th>URL</th>
+                    <th>처리날짜</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {#if logLists.length === 0}
+                    <tr>
+                        <td colspan="13" class="no_data">등록된 데이터가 없습니다.</td>
+                    </tr>
+                {:else}
+                    {#each logLists as log, index (log.store_id + log.edit_date)}
+                        <tr>
+                            <td>{pagination.totalCount - ((pagination.currentPage - 1) * pagination.pageSize) - index}</td>
+                            <td>{log.store_id || ''}</td>
+                            <td>{log.store_name || ''}</td>
+                            <td>{log.store_catid || ''}</td>
+                            <td>{log.pre_prime_AC || ''}% → <span style="color: #be0000;">{log.to_prime_AC || ''}%</span></td>
+                            <td>{log.pre_prime_BC || ''}% → <span style="color: #be0000;">{log.to_prime_BC || ''}%</span></td>
+                            <td>{log.pre_prime_CC || ''}% → <span style="color: #be0000;">{log.to_prime_CC || ''}%</span></td>
+                            <td>{log.pre_prime_C || ''}% → <span style="color: #be0000;">{log.to_prime_C || ''}%</span></td>
+                            <td>{log.editor_name || ''}</td>
+                            <td>{log.editor_ip || ''}</td>
+                            <td>{log.editor_browser || ''}</td>
+                            <td>{log.url || ''}</td>
+                            <td>{log.edit_date || ''}</td>
+                        </tr>
+                    {/each}
+                {/if}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 목록으로 버튼 -->
+<div class="list_box" style="text-align: center; padding: 20px 0;">
+    <button 
+        class="defer_btn" 
+        type="button" 
+        on:click={() => window.history.back()}
+        style="background: #555; color: white; border: 1px solid #555; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; outline: none; transition: all 0.2s ease;"
+        on:mouseenter={(e) => {
+            e.target.style.background = '#333';
+            e.target.style.borderColor = '#333';
+        }}
+        on:mouseleave={(e) => {
+            e.target.style.background = '#555';
+            e.target.style.borderColor = '#555';
+        }}
+    >
+        목록으로
+    </button>
+</div>
+
+<!-- 페이지네이션 -->
+<LogsPagination 
+    currentPage={pagination.currentPage}
+    totalPages={pagination.totalPages}
+    onPageChange={handlePageChange}
+/>
+
+<style>
+    .no_data {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+    }
+</style>

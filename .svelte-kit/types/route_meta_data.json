@@ -1,0 +1,37 @@
+{
+	"/": [],
+	"/dashboard": [],
+	"/edit/partner": [],
+	"/edit/store": [],
+	"/list/partner": [],
+	"/list/store": [],
+	"/login": [],
+	"/partnerSystem": [],
+	"/payment/duplicateList": [],
+	"/payment/paymentList": [],
+	"/payment/receipt": [],
+	"/payment/salesList": [],
+	"/settings/admin": [],
+	"/settings/logs": [],
+	"/settings/logs/commission": [],
+	"/settings/logs/edit": [],
+	"/settings/logs/settlement": [],
+	"/settings/partner": [],
+	"/settings/store": [],
+	"/settlement": [],
+	"/settlement/partner": [
+		"src/routes/settlement/partner/+page.server.ts"
+	],
+	"/settlement/partner/detail": [],
+	"/settlement/store": [
+		"src/routes/settlement/store/+page.server.ts"
+	],
+	"/settlement/transfer": [
+		"src/routes/settlement/transfer/+page.server.ts"
+	],
+	"/store/commission": [],
+	"/store/expirydate": [],
+	"/store/inactive": [],
+	"/write/partner": [],
+	"/write/store": []
+}

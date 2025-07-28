@@ -1,0 +1,73 @@
+/* 로그인 페이지 전용 스타일 */
+
+/* 원본과 동일한 로그인 버튼 스타일 */
+.login_btn .btn-primary,
+.login_btn .btn-primary:disabled {
+	background: #660000;
+	border: 1px solid #660000;
+	font-weight: 700;
+	font-family: sans-serif;
+	height: auto;
+	transition: all 0.4s;
+}
+
+.login_btn .btn-primary:hover:not(:disabled) {
+	background: #4e0000;
+	border: 1px solid #4e0000;
+	color: #fff;
+}
+
+.login_btn .btn-primary:disabled {
+	opacity: 0.8;
+	cursor: not-allowed;
+}
+
+.login_btn .btn-primary:active {
+	background: #660000 !important;
+	border: 1px solid #660000 !important;
+}
+
+/* 로딩 스타일 */
+.loader {
+	border: 4px solid #f3f3f3;
+	border-top: 4px solid #660000;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	animation: spin 1s linear infinite;
+	margin: 0 auto 20px;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.alert_mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 9998;
+}
+
+.alert_popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	padding: 30px;
+	border-radius: 10px;
+	z-index: 9999;
+	min-width: 300px;
+	text-align: center;
+}
+
+.qrok_title h5 {
+	margin: 0;
+	color: #333;
+	font-size: 1.1rem;
+}

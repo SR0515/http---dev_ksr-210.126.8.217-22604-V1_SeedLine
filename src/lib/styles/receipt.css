@@ -1,0 +1,96 @@
+/* 영수증 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+p,li,td,th,dt,dd,a,input,textarea,select,button,span{font-family: 'Noto Sans KR', sans-serif;font-weight:400;}
+dl, dd{margin:0px;padding:0px;}
+.receipt_pop{max-width:640px;margin:0 auto;height:calc(100% - 40px);bottom:0px;top:10%;left:0px;right:0px;}
+.receipt_wrap_scroll{align-items: center;}
+.receipt_pop .cancel_receipt{position: absolute; right: 60px; top: 10px; cursor: pointer;}
+.receipt_pop .cancel_receipt span{font-size: 1.4rem;}
+.receipt_pop .cancel_receipt p{font-size: 0.7rem; margin-top: -8px;}
+
+/*취소영수증*/
+.receipt_cancellation{ 
+    background: url("/img/no_img_p_red.png") no-repeat center center ; 
+    background-size: 100%;}
+/*.receipt_cancellation:before{position:absolute;content: "";width:1px; height:100%;transform:rotate(45deg);background:#b31717;left:0px;right:0px;top:0px;bottom:0px;}*/
+.receipt_cancellation h3, .receipt_cancellation dl, .receipt_cancellation dt, .receipt_cancellation dd{color:rgba(0, 0, 0, 0.604) !important;}
+.receipt_cancellation h3{border-color: rgba(0,0,0,0.35) !important;}
+.receipt_pop h3 {
+    font-size: 0.95rem;
+    color: #222;
+    text-align: left;
+    border-bottom: 2px solid #222;
+    padding-bottom: 7px;
+    margin-bottom: 7px;
+    font-weight: 600;
+    margin-top: 10px;
+    letter-spacing: -1px;
+}
+.receipt_pop dl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px dotted #ededed;
+    padding:0px 0px 10px 0px;
+    margin:10px 0px;
+
+}
+.receipt_pop dt {
+    font-size: 0.85rem;
+    color: #222;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    width: 105px;
+    text-align: left;color:#555;
+}
+.receipt_pop dd {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: right;
+    letter-spacing: -0.5px; color:#555;
+}
+.receipt_pop h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -1px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.receipt_btn{cursor:pointer;display:inline-block;color:#fff;padding:0.15rem 0rem;background:#FF6C27;border:1px solid #FF6C27;font-size:0.70rem;min-width:60px;text-align:center;border-radius:5px;margin-bottom:1px;}
+.receipt_btn:hover{background:#ff2a00;border:1px solid #ff2a00;}
+.receipt_body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: none ;
+}
+#receipt_logo{ width: 100px; margin-top:5px;}
+.receipt_pop h2{margin:5px 0px;}
+.receipt_buttonbox{ text-align:center; margin-top:18px;}
+.receipt_buttonbox button{cursor:pointer;background:#000;border:none;padding:8px 30px 10px 30px;color:#fff;border-radius:12px;letter-spacing:-1px;}
+.receipt_buttonbox button:first-child{background:#666;}
+
+#copyright_box > p {font-size: 0.7rem; color: #999;}
+
+.receipt_wrap_scroll{margin-top: 1.2rem;}
+
+/* 검색조회 엑셀버튼 */
+.excel_bt{max-width: 110px; background: #509d7e; font-size: 0.85rem !important;}
+.excel_bt:hover{ background: #047146; }
+.excel_bt .excel_icon{filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(10deg) brightness(103%) contrast(102%); margin-right: 5px; width: 18px; vertical-align: bottom;}
+#excel_box{ width: 100%; justify-content: space-between; align-items: center; display: flex;}
+
+#receipt_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 710px;
+}
+
+
+/* #receiptModal{display: none;} */

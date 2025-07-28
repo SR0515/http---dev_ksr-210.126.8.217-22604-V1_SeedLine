@@ -1,0 +1,39 @@
+<script lang="ts">
+    import LeftMenu from '$lib/components/LeftMenu.svelte';
+    import LogsLayout from '$lib/components/logs/LogsLayout.svelte';
+    import LogsTabMenu from '$lib/components/logs/LogsTabMenu.svelte';
+    import { page } from '$app/stores';
+    import { authStore } from '$lib/stores/auth';
+    import { goto } from '$app/navigation';
+    
+    // 권한 체크 (로그인된 사용자만 접근 가능)
+    $: if (!$authStore.classify) {
+        goto('/dashboard');
+    }
+    
+    // 현재 활성 탭 결정
+    $: currentTab = getCurrentTab($page.url.pathname);
+    
+    function getCurrentTab(pathname: string): string {
+        if (pathname.includes('/settings/logs/edit')) return 'EditLog';
+        if (pathname.includes('/settings/logs/commission')) return 'S_commission_log';
+        if (pathname.includes('/settings/logs/settlement')) return 'S_settlement_log';
+        return 'LoginLog';
+    }
+</script>
+
+<LeftMenu />
+
+<LogsLayout>
+    <section class="borderbox form_view" style="overflow: visible !important;">
+        <div class="title_wrap">
+            <h5 class="page_title">로그 조회</h5>
+        </div>
+        
+        <LogsTabMenu {currentTab} />
+        
+        <div style="overflow: visible !important;">
+            <slot />
+        </div>
+    </section>
+</LogsLayout>

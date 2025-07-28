@@ -1,0 +1,181 @@
+/* 대시보드 전용 스타일 - 원본과 완전 일치 */
+
+/* 페이지 컨테이너 */
+#page_contect {
+    min-height: 94%; 
+    padding: 25px 25px;
+    background: #fff;
+    border-radius: 30px;
+    margin-right: 15px;
+}
+
+/* 메인 박스 간격 - 3개 박스 사이 간격 */
+.mt_4 {
+    margin-top: 1.0rem !important;
+}
+
+/* 달력 영역 간격 - 3개 박스 간의 간격 증가 */
+.calendar_wh {
+    margin-top: 2rem !important;
+}
+
+/* 박스 높이 통일 */
+.box_height1 {
+    height: 217px !important; 
+    padding: 1.8rem !important;
+}
+
+/* 컨텐츠 박스 스타일 */
+.borderbox_table .contentbox {
+    background: #fff;
+    padding: 1.31rem;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 11px 0 rgb(0 0 0 / 8%);
+}
+
+/* 유저 박스 스타일 */
+.contentbox.userw_wrap { 
+    margin-bottom: 1.5rem;
+    border: 0; 
+    box-shadow: none; 
+    background: #971523; 
+    border-radius: 25px;
+}
+
+/* 아이콘 영역 */
+.borderbox_table .content_icon {
+    margin-bottom: 1rem; 
+}
+
+.borderbox_table .content_icon img {
+    width: 30px; 
+    margin-bottom: 10px;
+}
+
+.borderbox_table .content_icon p {
+    color: #333; 
+    font-weight: 500; 
+    font-size: 1.2rem; 
+    word-break: keep-all;
+}
+
+/* 카운터 텍스트 */
+.borderbox_table .contentbox .content_text p span.counter {
+    font-size: 1.85rem;
+    font-family: 'Roboto','Noto Sans KR', sans-serif;
+    letter-spacing: -1px;
+    color: #971523;
+    font-weight: 500;
+}
+
+.borderbox_table .contentbox .content_text p span.unit_t {
+    color: #555;
+    font-size: 1.05rem;
+}
+
+.borderbox_table .contentbox .content_text p span.counter.uiit_total_t {
+    font-size: 1.35rem;
+    color: #333;
+}
+
+/* 전체 레이아웃 조정 - 원본과 동일하게 */
+#main_contect .borderbox_table {
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+/* 달력이 있는 borderbox_table만 세로 배치 */
+.calendar_wh .borderbox_table {
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+    margin-left: 18px;
+}
+
+/* 모바일에서 달력 중앙 정렬 */
+@media (max-width: 991px) {
+    .calendar_wh .borderbox_table {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* 달력 영역 전체 중앙 정렬 */
+    .calendar_wh {
+        padding: 0 !important;
+    }
+    
+    .calendar_wh .col-12 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+.borderbox_table .main_boxwh {
+    width: 100%;
+}
+
+/* 유저 정보 영역 - 레이아웃 수정 */
+.user_info_wrap {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 0 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.content_left {
+    display: flex; 
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.content_left .user_img {
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.content_left .user_img img {
+    width: 35px; 
+    height: 35px;
+    border-radius: 50%;
+}
+
+.user_name {
+    font-size: 1.2rem !important; 
+    margin: 0 !important; 
+    font-weight: 600 !important; 
+    color: #fff !important;
+    white-space: nowrap;
+    display: inline !important;
+}
+
+.content_left span {
+    color: #fff; 
+    font-size: 1rem;
+    white-space: nowrap;
+    margin-left: 5px;
+    display: inline;
+}
+
+.content_right {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.content_right p {
+    color: #fff;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.content_right p span {
+    font-size: 1.4rem; 
+    font-weight: 600;
+}

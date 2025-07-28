@@ -1,0 +1,712 @@
+.t_center{text-align: center;}
+.text_left{text-align: left;}
+.mt_0{margin-top: 0 !important;}
+.sub_box input, .sub_box textarea, .partner_page input, .member_page input{border: 1px solid #ddd;}
+.sub_box input:read-only, .sub_box textarea:read-only, .partner_page input:read-only, .member_page input:read-only{background:#eaeef2;}
+#coper_address{background: #fff;}
+
+.sub_box select, .partner_page select, .member_page select{background: #eaeef2 url(../../img/dote_select_bg.png) no-repeat 96% 50%;background-size:25px;}
+.sub_box .form_input p{font-size:0.90rem;}
+
+/* 관리자 설정-수정하기 페이지 */
+.toggle_btn_box label{ display: inline-flex; align-items: center;  cursor: pointer;}
+.toggle_btn_box label input[type="checkbox"]{
+  cursor: pointer;
+  margin-right: 5px;
+  appearance: none;
+  position: relative;
+
+  border-radius: 1.25em;
+  width: 2.4rem;
+  height: 23px;
+  padding: 0;
+}
+.toggle_btn_box label input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transform: scale(0.8);
+  background-color: #d1d1d1;
+  transition: left 250ms linear;
+}
+
+.toggle_btn_box label input[type="checkbox"]:checked {background: #163bb2;}
+.toggle_btn_box label input.blacklist_checkbox[type="checkbox"]:checked {background: #ff3333;}
+
+.toggle_btn_box label input[type="checkbox"]:checked::before {background-color: #fff; left: 16px;}
+.agency_form .member_table .toggle_btn_box{text-align: left;}
+
+#favoriteForm .btn_space label:first-child, #favoriteForm .btn_space label:nth-child(2), #favoriteForm .btn_space label:nth-child(3), #favoriteForm .btn_space label:nth-child(4) {width: 200px;}
+.agency_form .authority_table .toggle_btn_box{text-align: center ;}
+
+#adminForm .agency_form dl .form_input{margin-top: 15px;}
+.agency_form dl .textarea_margin textarea{ height: 150px;}
+#adminForm .agency_form dl .textarea_margin{margin: 30px 0;}
+#adminForm .agency_form dl dd:nth-child(3), #adminForm .agency_form .radio_wrap dd:nth-child(2),.agency_form .radio_wrap dd label {display: flex; align-items: center;}
+
+#adminForm .agency_form dl dd:nth-child(3) label{margin-right: 20px;}
+#adminForm .agency_form dl dd:nth-child(3) input{margin-right: 3px;}
+.sub_box .margin-bottom, #adminForm .agency_form .edit_date {margin-bottom: 15px;}
+.list_padding_top{padding-top: 20px;}
+
+.btn_box{text-align:right;padding: 25px 0px; }
+.sub_box .btn_box{padding: 25px 0;}
+.sub_box .btn_box , .table_wrap .btn_box{text-align:right;}
+
+.table_wrap td button{ width: 80px; padding: 0.3rem 0; height: auto; background: #666;}
+.sub_box .btn_box .cancel_btn{background: #333;}
+.sub_box .btn_box .edit_btn{background: #bd283b;}
+.table_wrap .btn_box .save_btn{background: #bd283b;}
+.sub_box .btn_box .margin-right{margin-right: 2px;}
+.agency_form .radio_wrap dd label{margin-right: 1rem; font-size: 0.9rem; word-break: keep-all;}
+.agency_form .radio_wrap dd label input{margin-right: 3px;}
+.agency_form .d-flex .mb-0{margin-bottom: 0 ;}
+.form_input input{width: 100%;}
+
+
+#page_contect h3{margin-top: 20px; margin-bottom: 20px;}
+#page_contect dt{margin-left: 2px;}
+#page_contect dd{margin-left:0px;}
+#page_contect dt.sdt_width{width:70px;}
+#page_contect .agency_form .d-flex dl:nth-child(2){padding-left:15px;}
+@media (max-width:991px) {
+
+    #page_contect .agency_form .d-flex dl:nth-child(2){padding-left:0px;}
+}
+.bank_select{min-width:160px;}
+
+
+/* 동행페이도우미 페이지*/
+.helper_list tbody tr td:nth-child(3) {text-align: left;}
+table{width: 100%;}
+textarea{width: 100%; border-radius: 10px; padding: 10px;}
+.write_table{border-top: 2px solid #0056d6;}
+.write_table th{border-top:0;}
+.helper_table input{width: 100%;}
+.helper_table tr td, .notice_table tr td, .admin_table tr td{text-align: left;}
+.helper_table textarea{ height: 200px;}
+.helper_btn_box{display:flex;align-items:center;}
+.helper_btn_box{padding:25px 15px;justify-content:space-between;}
+.btn_box .list_bt, .btn_box .delete_bt,.btn_box .cancel_bt{margin-right: 5px;}
+.btn_box .delete_bt, .btn_box .cancel_bt{background: #333;}
+.btn_box .edit_bt{ background: #bd283b;
+    /* background: #ff5404; */
+}
+.right_btn_box{text-align:right;padding:25px 15px;}
+/*  수정하기 페이지*/
+.mb_20px{margin-bottom: 20px;}
+.info_text{display: flex; align-items: center;}
+.info_text span{font-size: 0.7rem; color: #e71c1c; margin-left: 10px;}
+h3 .blacklist_checkbox{height: auto;}
+.black_wrap{display: flex; align-items: center;}
+.black_wrap label{margin-left: 10px;}
+
+
+.address_btn_box{margin-left: 5px;}
+.address_btn_box button{width: 100%;}
+.table_list td a{
+    padding: 0.2rem 0.7rem 0.25rem 0.7rem;
+    background: #666; color: #fff;
+    border: none; font-style: normal;
+    border-radius: 55px;}
+
+.agency_form .subtree{display: flex; gap: 10px;}
+
+#memberForm .account_check{margin-bottom: 5px;}
+#memberForm .account_check span{font-size: 0.85rem;}
+.admin_seeting_wrap #adminForm .agency_form dl .form_input {
+    margin-top: 0;}
+
+/* 파트너관리 -에이전시,딜러 등록 · 팝업창*/
+.upper_code_box .form_input{display:flex; gap: 8px;}
+
+
+.key_in_wrap{text-align:center;font-size:1.15rem;}
+.key_in_wrap #modal_pay_sum{color:#000;font-size:1.60rem;font-weight:800;}
+.key_in_wrap_btn{text-align:center;margin-bottom:15px;}
+.key_in_wrap_btn button{width:120px;}
+.key_in_wrap_btn .cancel_btn{background:#666;}
+.key_in_wrap_btn .ok_btn{background: #bd283b;margin-top:20px;}
+.CK_modal { display: none; position: fixed; z-index: 130; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); }
+.modal-content { border-radius: 15px !important; background-color: #fefefe !important; margin: 5% auto !important; padding: 20px !important; border: 1px solid #888; width: 60% !important; }
+.close_bt { text-align: right; color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+.close_bt:hover, .close_bt:focus { color: black; text-decoration: none; cursor: pointer; }
+
+#check_upper_modal .close_bt{background: #fff; display: inline-block; height: auto;}
+
+.CK_modal .btn__close{position: absolute; right: 10px; top: 10px; width: 45px; height: 45px;}
+.CK_modal .btn__close::before{position: absolute; right: 20px; top: 14px; content: ''; height: 20px; width: 2px; background-color: #666;}
+.CK_modal .btn__close::after{ position: absolute; right: 20px; top: 14px; content: ''; height: 20px; width: 2px; background-color: #666;}
+
+.btn_position{overflow-y: hidden;}
+
+/* 메뉴 깨짐 */
+.accordion-body ul li {padding: 0.35rem 1rem; line-height: 0.2;}
+.accordion-body ul  { padding-bottom: 0.6rem;}
+.btn_money_wrap button {min-width: 150px;}
+
+
+/* 페이징 */
+.page_navgation a, .page_navgation button{display: inline-block; cursor: pointer; background: #fff; color:#333; text-decoration: none; font-size: 0.75rem; width: 36px; line-height: 1.0rem; height: 36px; padding: 0.55rem 0 0.6rem 0; margin-right: 3px; border: 1px solid #dee2e6; border-radius: 300px;}
+
+@media (max-width:767px) {
+ .page_navgation a, .page_navgation button{font-size: 0.75rem; width:26px; line-height: 1.0rem; height: 26px; padding: 0.25rem 0 0.6rem 0; margin-right: 3px; border: 1px solid #dee2e6; border-radius: 300px;}
+}
+
+.list_page_navgation a{line-height: 1.3rem; padding: 0.4rem 0 0.45rem 0;}
+.page_navgation .arrow_bt{width: 20px; line-height: 1.0rem; height: 20px; border: 0; margin-right: 0; }
+.list_page_navgation .arrow_bt{width: 20px; line-height: 1.0rem; height: 20px; border: 0; margin-right: 0; }
+.page_navgation .on{color: #ff4357;
+    /* color:#FF6C27; */
+}
+.page_navgation .arrow_icon{filter: invert(39%) sepia(29%) saturate(6864%) hue-rotate(332deg) brightness(108%) contrast(101%);}
+
+/* 게시판 */
+.img_title{text-align: left; margin: 5px 0 10px 0;}
+.img_file_input .bor_bt{margin-left: 5px; }
+
+.write_table  td{text-align: left;}
+
+/*버시스 설정 및 정산계좌정보*/
+dt.pl_15{padding-left:15px;}
+button a, button.cancel_bt{padding:0px;}
+button a{ display:block;}
+.button_a{padding: 0rem 0.95rem;height:40px;line-height:30px;
+    display:inline-block;
+    color: #fff;
+    border: none;
+    font-size: 0.85rem;
+    font-style: normal;
+    border-radius: 15px;
+    min-width: 120px;}
+
+/* 일괄포인트충전 엑셀버튼*/
+.excel_upload_btn .left_btn{width: 40%;}
+.excel_upload input[type="file"]{
+     position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+.excel_upload li label{background: #666;
+    padding: 0.6rem 0.95rem;
+    color: #fff;
+    border: none;
+    font-size: 0.85rem;
+    font-style: normal;
+    border-radius: 55px;
+    min-width: 120px;
+     height: 40px;
+    font-size: 0.85rem;
+    margin-left: 6px;
+    text-align: center;
+  }
+.excel_upload  .select_excel{ width: 100%;}
+.excel_upload  .select_excel input{width: 100%; min-width: 325px;}
+.select_excel_wrap{display: flex; justify-content: space-between;}
+
+/* 미반영 충전관리 - 반영하기 팝업창 */
+/* .list_small_pop{max-width: 760px;} */
+#list_small_pop {top: 10%;}
+#list_small_pop .popup_title h2, #list_small_pop .btn_close{background: #163bb2;}
+#list_small_pop .btn__close::after,#list_small_pop .btn__close::before{top: 12px; height: 20px;}
+#list_small_pop .popup_body{padding: 20px 25px 35px 25px;}
+#list_small_pop  .blue_bgbor{background: #163bb2; border: 0;}
+#list_small_pop .cancel_bt{background: #666; font-style: normal;
+    border-radius: 55px; padding: 0.6rem 0.95rem;
+    min-width: 120px; height: 40px; color: #fff; }
+#list_small_pop .popup_footer{display: flex; justify-content: center;}
+#list_small_pop .popup_footer .bt{margin: 0 5px 0 5px;}
+#list_small_pop .page_navgation{display: flex; justify-content: center; text-align: center;}
+#list_small_pop  .popup_title .col-md-8{padding: 10px 25px 0 25px;}
+#list_small_pop  .popup_title .col-md-8 .search_ba{width: 100%;}
+
+/* 정산관리*/
+.store_table td input.num_input{width: 80px; text-align: center;}
+.store_table td a .t_btn{padding: 0.2rem 0 0.25rem 0;
+    background: #666;
+    color: #fff;
+    border: none;
+    font-style: normal;
+    border-radius: 55px;
+    font-size: 0.75rem;}
+
+.search_box .search_ba{margin-top: 0; width: 99%;}
+.search_box .search_ba .m_t2{min-width: 75px;}
+.search_box .row-wrap label{margin-right: 5px;}
+
+/* 테스트페이지 정산수수료 관리 */
+.commission_card_container {display: flex; flex-wrap: wrap; gap: 1rem; justify-content: flex-start; margin: 1rem 0 1.5rem 0;}
+.commission_card_container .highlight-card{background: #ffe6e5;}
+.commission_store_card {
+    background: rgba(205, 41, 58, 0.02);
+    border: 1px solid #9b16281a;
+    border-top: 4px solid #bd283b;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.commission_store_card:hover{box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);}
+.commission_store_card.highlight_card {background-color: #fffbe6;}
+.commission_card_header_box{display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;}
+.commission_card_header_box .No_ID_text{line-height: 1.2; color: #333;}
+.commission_card_header_box .commission_card_actions{margin-top: 0;}
+.commission_card_header_box .commission_card_actions button{font-size: 0.9rem; height: 40px; width: 75px;}
+
+.commission_card_header h3 {margin: 0.5rem 0 !important; font-size: 1.15rem !important; font-weight: 600; color: #000;}
+.commission_card_header span{font-size: 0.8rem; color: #666;}
+.commission_card_header small {display: block; font-size: 0.85rem; color: #666;}
+.commission_store_card .card_wrap{display: flex; justify-content: space-between; align-items: center;}
+.commission_card_path {margin: 0.5rem 0; font-size: 0.9rem; word-break: keep-all;}
+.commission_card_partners {display: flex; gap: 0.4rem; margin-bottom: 0.5rem; min-width: 720px;}
+.commission_input {margin-right: 2rem; text-align: left; width: 150px;}
+.commission_input:last-child {margin-right: 0;}
+.commission_input span{font-size: 0.9rem; margin-bottom: 5px; display: block;}
+.commission_input .commission_init{font-size: 0.9rem; margin-bottom: 0;}
+.commission_input_box{display: flex; align-items: center; gap: 5px;}
+.commission_input input, .commission_card_terminal input {width: 60px; padding: 0.8em; text-align: right; color: #333; border-radius: 8px;}
+.commission_input input[readonly] {background: #f1f1f1;}
+.commission_card_terminal {margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;}
+.commission_card_terminal .store_text{color: #bd283b; font-weight: 500; font-size: 0.95rem;}
+.commission_readonly_input {background-color: #f7f7f7;}
+.commission_card_actions {text-align: right; margin-top: 1rem;}
+.commission_edit_btn {width: 100%; font-size: 0.95rem; transition: all 0.2s; background: #666;}
+.commission_edit_btn:hover{background: #9b1628;}
+
+.s_sommission_table .pointer{cursor: pointer;}
+.store_commission_modal .modal-content{width: 70% !important;}
+.store_commission_modal .commission_card_path{max-width: 450px;}
+
+
+/* 회원관리 - 파트너확인 팝업창 */
+.upper_member_table colgroup col:last-child {width: 6% !important;}
+.upper_member_table  td button{padding: 0.2rem 0 0.25rem 0;
+    background: #666;
+    color: #fff;
+    border: none;
+    font-style: normal;
+    border-radius: 55px;
+    font-size: 0.75rem;}
+
+/* 탭버튼 */
+.subtree .subtree_btn{background: #666;}
+.tab_active{background: #163bb2 !important;}
+/* 수정로그조회 */
+.edit_log_table tbody .pre_value,.edit_log_table tbody .to_value{
+    max-width:190px !important; 
+    white-space: nowrap ;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+/* 로딩팝업창 */
+.alert_mask {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    z-index: 2000;
+    opacity: 0.8;
+    filter: alpha(opacity = 90);
+}
+.qr_ok_popup {display: none; border-radius: 1.5rem 1.5rem 0 0; 
+    background: none !important;
+    height: 45% !important;
+    bottom: 25%;}
+
+.loading_popup .qr_wrap {
+    z-index: 9999;
+    max-width: 430px;
+    border-radius: 8px;
+    background: #fff;
+    margin: 0 auto;
+    padding: 1.4rem;
+    position: relative;
+}
+.qrok_title{text-align: center; color: #666; }
+.loader {
+    display: inline-block;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 6px;
+    margin-bottom: 10px;
+    background: conic-gradient(from 135deg at top, currentColor 90deg, #0000 0) 0 calc(50% - 4px) / 17px 8.5px, radial-gradient(farthest-side at bottom left, #0000 calc(100% - 6px), currentColor calc(100% - 5px) 99%, #0000) top right / 50% 50% content-box content-box, radial-gradient(farthest-side at top, #0000 calc(100% - 6px), currentColor calc(100% - 5px) 99%, #0000) bottom / 100% 50% content-box content-box;
+    background-repeat: no-repeat;
+    animation: l11 1s infinite linear;
+}
+@keyframes l11{ 
+  100%{transform: rotate(1turn)}
+}
+.qr_ok_popup .qrok_title h5 {
+    font-family: 'Noto Sans KR', sans-serif !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-bottom: 0 !important;
+}
+
+/* OTP QR이미지 */
+#qrCodeImg{width: 200px; }
+
+.recycle_icon{
+    width: 14px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+}
+
+
+/* copyright */
+.footer_wrap{
+    padding: 1rem 0;
+}
+.copybox{text-align: center; }
+.copybox p{font-size: 0.75rem; color: #999;}
+.login_box_wrap .footer_wrap{min-width: auto;}
+.login_box_wrap .footer_wrap .copybox p >span{display: block;}
+
+/* 가맹점관리 - 정산 수수료 관리(단말기) */
+/* .store_table .highlight-row {background: #fff3f3;} */
+.store_table .highlight-row {background: #ffd4d4 !important;}
+.info_mark{position: relative; top: 12px;}
+.info_mark::after{
+    content: '';
+    position: absolute;
+    top: -15px;
+    width: 8px;
+    height: 8px;
+    background: red;
+    border-radius: 50px;
+    margin-left: 5px;
+}
+.level_info_mark::after{top: -5px; margin-left: 6px;}
+.accordion-button:not(.collapsed)>span::after{background: red !important; z-index: 88;}
+.c_count{background: #fff; border-radius: 6px; padding: 0 0.35rem 0.1rem 0.35rem; margin-left: 3px; color: #971523; font-weight: 500; font-size: 0.8rem;}
+
+/* 정산관리 */
+table .settle_title a{color: #666; background: none; padding: 0; border-radius: 0; font-size: 0.85rem; font-family: 'Noto Sans KR', sans-serif; font-weight: 400;}
+.defer_btn{background: #666;}
+
+.complete_btn, .table_wrap td .complete_btn{background: #971523;border-radius: 45px !important; min-width: 85px !important;}
+.checkbtn{min-width: 85px !important; border-radius: 45px !important;}
+.pay_state{min-width:80px;}
+
+/* 결제내역-중복결제 의심내역 */
+.dup_table table tr:hover td{background: none;}
+.dup_table table tr:hover {background: rgba(0, 0, 0, 0.02);}
+.dup_table .table_list{margin: 0;}
+.dup_btn{margin: 30px 0 100px 0;}
+#searchForm .dup_btn{margin: 30px 0;}
+.dup_btn .cancle_btn{background: #af1726;}
+.dup_btn .cancle_btn:hover{background:#7c111b;}
+.dup_btn .success_btn{background:#167e11;}
+.dup_btn .success_btn:hover{background: #0b5f07;}
+.dup_btn .check_btn:hover{background: #111;}
+
+/* ----------------인증결제------------------------ */
+
+/* 강조 표시용 (적용 시점) */
+.cd_dlex input.input-error {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.5);
+}
+
+/* 페이드아웃 전환용 (서서히 흐려지기) */
+.cd_dlex input.input-error.fadeout {
+  border-color: #ccc;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0);
+}
+
+/* 흔들림 효과 */
+.cd_dlex input.shake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+  }
+
+  .shake {
+  animation: shake 0.5s;
+}
+
+  #toast {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: fixed;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  #toast.show {
+    opacity: 1;
+  }
+
+
+
+
+
+
+/*가맹점명 */
+.name_click:hover{text-decoration: underline; cursor: pointer;}
+
+/*가맹점 상세페이지, 등록페이지*/
+
+.store_edit_row{
+    /* background: #f5f5f5;  */
+    background: #fff6f6;
+    padding: 5px 10px; 
+    /* border-radius: 55px; */
+    border-radius: 8px;
+    align-items: center;
+}
+.store_edit_row:first-child{margin-bottom: 5px;}
+
+.commission_notice{margin-bottom: 15px; width: 200px; font-size: 12px;}
+#commission_percent{font-size: 15px; font-weight: 500;}
+
+#realtime_check_input { width: auto !important; margin-right: 5px;}
+#realtime_check_input input{height: auto;}
+.realtime_check_title{font-size: 0.85rem; margin-bottom: 5px;}
+#realtime_check_title dt{display: flex; justify-content: center; align-items: center; }
+.realtime_check_wrap{margin-left: 0 !important;}
+.text_center { display: flex; align-items: center; justify-content: center;}
+.store_edit_commission {justify-content: space-between;}
+.radio_wrap .d-flex label{display: flex; align-items: center; gap: 5px; font-size: 0.9rem; margin-right: 1rem;}
+.bank_edit_btn{margin-left: 5px;}
+.radio_wrap .d-flex label input{ margin-right: 3px;}
+.svelte-select {
+    border-radius: 55px !important; 
+    background: #fff url(../../img/dote_select_bg.png) no-repeat 96% 50% !important; background-size:25px !important;
+    border: 1px solid #ddd !important; 
+}
+.svelte-select.disabled{background: #eaeef2 !important; }
+.svelte-select .selected-item{font-size: 0.85rem !important; color: #666 !important;}
+
+/* 인증모달 */
+#pass_check_modal .modal-content{width: 400px !important; margin: 10% auto !important;}
+#passCheckForm h4{font-size: 1.1rem; margin-bottom: 1.5rem;}
+#pass_check_modal .modal-content .btn__close {top: 3px; width:30px; height:30px;}
+#bank_edit_pass {width:65%;}
+#passCheckForm button{width: 120px;}
+.list-item .item .svelte-82qwg8{font-size: 0.85rem !important;}
+
+/*인덱스*/
+.login_check >label{margin-right: 15px; margin-bottom: 5px;}
+.list_box{display: flex;justify-content: end; align-items: end;margin-bottom:10px;}
+
+
+/* 테이블 min-width */
+/* .table_width{min-width: 1131px;} */
+
+/*upper_path*/
+.upper_1{color:#000000; font-weight: 500;}
+.upper_2{color:#e22f41; font-weight: 500;}
+.upper_3{color:#f15b05; font-weight: 500;}
+.upper_4{color:#e59600; font-weight: 500;}
+.upper_5{color:#0aa33d; font-weight: 500;}
+.upper_6{color:#0384fd; font-weight: 500;}
+.upper_7{color:#060ae2; font-weight: 500;}
+.upper_8{color:#a000d1; font-weight: 500;}
+.upper_9{color:#d30060; font-weight: 500;}
+.upper_10{color:#a52a2a; font-weight: 500;}
+.upper_11{color:#4682b4; font-weight: 500;}
+.upper_12{color:#666; font-weight: 500;}
+
+.upper_1_point{color:#000; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_2_point{color:#e22f41; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_3_point{color:#f15b05; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_4_point{color:#e59600; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_5_point{color:#0aa33d; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_6_point{color:#0384fd; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_7_point{color:#060ae2; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_8_point{color:#a000d1; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_9_point{color:#d30060; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_10_point{color:#a52a2a; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_11_point{color:#4682b4; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+.upper_12_point{color:#666; font-weight: 600; font-size: 0.8rem; margin-right: 10px;}
+
+
+/*버튼 5개*/
+.settlement_btn{width:100px;}
+@media (min-width:588px) {
+.five_btn{display: flex; justify-content: space-between;}
+}
+
+@media (max-width:587px) {
+.right_btn.five_btn ul:nth-child(2){margin-top:5px;}
+}
+/* 1년경과 단말기 관리 */
+table td.input_width input{width: 56%;}
+table td.input_width button{min-width: 60px; height: 40px; margin-left: 5px;}
+table td.input_width button:hover{background: #333;}
+
+/* 결제내역 매출내역(파트너) */
+.sales_table p{color: #9b1628; font-weight: 500;}
+.sales_table_title{display: flex;}
+.table_mt{margin-top: 3rem; border-top: 1px solid #ededed; padding-top: 3rem;}
+.table_mt2{margin-top: 5rem; border-top: 1px solid #ededed; padding-top: 3rem;}
+
+.accordion-button,
+.accordion-body a {
+    transition: background-color 0.6s ease, padding 0.8s ease;
+    padding: 10px 15px;
+    display: block;
+}
+
+.accordion-button:not(.collapsed) {
+ color: #fff;
+ background: #971523;
+ box-shadow: none;   
+ border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+.accordion-collapse {transition: max-height 0.2s ease, opacity 0.4s ease; overflow: hidden;}
+
+.accordion-collapse.show {
+    max-height: 1000px; /* 충분히 큰 값으로 설정 */
+    opacity: 1;
+}
+
+.accordion-collapse:not(.show) { max-height: 0; opacity: 0;}
+.accordion-button.active-submenu {
+    /* background-color: #971523; */
+    border-radius: 8px 8px 0px 0px !important;
+}
+
+.accordion-collapse {overflow: hidden;}
+
+.accordion-body {padding: 0;}
+.accordion-button:hover  {background-color: #971523; } 
+
+.accordion-body a:hover {
+    background-color: #971523; /* 원하는 배경색으로 수정 */
+    text-decoration: none !important;
+}
+
+.accordion-body a.active {background-color: #971523;}
+button.accordion-button.collapsed.active_menu {
+    color: white; /* 글자색 */
+    border-top-left-radius: 5px; /* 좌측 상단 라운드 */
+    border-top-right-radius: 5px; /* 우측 상단 라운드 */
+}
+
+/* active_menu 클래스에 대한 스타일 추가 */
+.accordion-button.active_menu {
+    background-color: #971523 !important; /*원하는 배경색으로 변경*/
+    color: white; /* 텍스트 색상 변경 */
+    border-radius: 8px 8px 0px 0px ;
+}
+.accordion .a_active_menu {
+    background-color: #971523; 
+    color: white;
+    border-radius: 8px 8px 8px 8px ;
+}
+.accordion-button {border-radius: 0.5rem 0.5rem 0 0;}
+.accordion-item:first-of-type>.accordion-header .accordion-button {border-radius: 0.5rem 0.5rem 0 0;}
+.accordion-button::after {
+    flex-shrink: 0;
+    width: 1rem !important;
+    height: 1rem !important;
+    margin-left: auto;
+    content: "";
+    background-image: url("../img/icon/menu_arrow.svg") !important;
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    transition: var(--bs-accordion-btn-icon-transition);
+    position: absolute !important;
+    right: 20px;
+    top: 20px;
+}
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(0deg);
+}
+.collapsed::after{
+    right: 20px;
+    top: 10px;
+}
+.paylink{
+    padding: 0 !important;
+    background: none !important;
+    color: #333 !important;
+    border: none !important;
+    font-size: 0.85rem !important;
+    
+}
+
+
+@media(max-width:1386px){
+    table td.input_width input{width: 54%; } 
+}
+
+@media(max-width:1199px){
+#main_cwrap .col-xl-8 {margin-top: 1.5rem;}
+}
+
+
+.settlement_li{line-height: 15px;}
+
+/*정산관리 리스트 테이블 칸 색깔 구별*/
+.settlement_table tr:nth-child(2n+1){background:#f9f9f9;}
+/* .settlement_table tr:nth-child(2n){background:#f3f3f3;} */
+
+
+/*20240910 수정*/
+dd.text_right_input input{text-align:right !important;}
+.green_text{color:#047146 !important;}
+.red_text{color:#e55326 ! important;}
+.gray_text{color:#ad27d4 ! important;}
+
+tbody tr:nth-child(2n) {background: #fff9f9;}
+
+
+/* 푸터 - 카피라이터 */
+.app_layout { min-height: 98vh; /* 화면 전체 높이 */ }
+.app_footer_wrap { 
+    min-height: 13%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+
+@media (max-width:500px) {
+    /* 반응형 테이블 넓이 */
+    .fee_table .minwd_upper_path{min-width: 130px;}
+    .fee_table .wd_numinput{ min-width: 120px;}
+    .fee_table .min_wd{min-width: 110px;}
+    .terminal_table .terminal_date{min-width: 100px;}
+    .terminal_table form{display: flex; margin-bottom: 0; align-items: center;}
+    .terminal_table #edit_Tid{min-width: 120px;}
+
+    .wd_date, .wd_path2{min-width: 120px;}
+    .wd_name, .wd_quota{min-width: 80px;}
+    .wd_path, .wd_account{min-width: 150px;}
+    .wd_bank{min-width: 90px;}
+    .wd_agency, .wd_pre_prime{min-width: 100px;}
+}
+
+

@@ -1,0 +1,268 @@
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import LogsSearch from '$lib/components/logs/LogsSearch.svelte';
+    import LogsPagination from '$lib/components/logs/LogsPagination.svelte';
+    import { 
+        fetchLogData, 
+        validateDateRange, 
+        getUserTypeLabel, 
+        getUserRateLabel
+    } from '$lib/utils/logsUtils';
+    
+    // 상태 관리
+    let loading = false;
+    let logLists: any[] = [];
+    let currentPage = 1;
+    let totalPages = 1;
+    let totalCount = 0;
+    let pageSize = 10;
+    
+    // 검색 상태
+    let searchSelect = 'id';
+    let searchText = '';
+    let typeSelect = '';
+    let startDate = '';
+    let endDate = '';
+    
+    // 데이터 조회
+    async function loadLogData() {
+        if (!validateDateRange(startDate, endDate)) {
+            return;
+        }
+        
+        try {
+            loading = true;
+            const result = await fetchLogData('S_settlement_log', currentPage, pageSize, {
+                searchSelect,
+                searchText,
+                typeSelect,
+                startDate,
+                endDate
+            });
+            
+            logLists = result.data;
+            totalCount = result.pagination.totalCount;
+            totalPages = Math.ceil(totalCount / pageSize);
+        } catch (error) {
+            console.error('로그 데이터 로드 실패:', error);
+        } finally {
+            loading = false;
+        }
+    }
+    
+    // 검색 실행
+    function handleSearch() {
+        currentPage = 1;
+        loadLogData();
+    }
+    
+    // 검색 초기화
+    function handleReset() {
+        searchText = '';
+        searchSelect = 'id';
+        typeSelect = '';
+        startDate = '';
+        endDate = '';
+        currentPage = 1;
+        loadLogData();
+    }
+    
+    // 페이지 크기 변경
+    function handlePageSizeChange() {
+        currentPage = 1;
+        loadLogData();
+    }
+    
+    // 페이지 이동
+    function handlePageChange(page: number) {
+        currentPage = page;
+        loadLogData();
+    }
+    
+    onMount(() => {
+        loadLogData();
+    });
+</script>
+
+<svelte:head>
+    <title>로그 조회 - 가맹점 정산처리</title>
+</svelte:head>
+
+<LogsSearch 
+    bind:searchSelect
+    bind:searchText
+    bind:typeSelect
+    bind:startDate
+    bind:endDate
+    bind:pageSize
+    onSearch={handleSearch}
+    onReset={handleReset}
+    onPageSizeChange={handlePageSizeChange}
+/>
+
+<!-- 로딩 상태 -->
+{#if loading}
+    <div class="loading_wrap">
+        <p>데이터를 불러오는 중입니다...</p>
+    </div>
+{/if}
+
+<!-- 테이블 -->
+<section class="borderbox_table">
+    <div class="table_wrap">
+        <div class="table_responsive">
+            <table class="table_list" width="100%">
+                <caption>가맹점 정산처리 로그 테이블</caption>
+                
+                <colgroup>
+                    <col class="col_no">
+                    <col class="col_id">
+                    <col class="col_name">
+                    <col class="col_store">
+                    <col class="col_date">
+                    <col class="col_ip">
+                    <col class="col_amount">
+                    <col class="col_status">
+                    <col class="col_memo">
+                </colgroup>
+                
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>처리자 ID</th>
+                        <th>처리자명</th>
+                        <th>가맹점명</th>
+                        <th>처리일자</th>
+                        <th>IP</th>
+                        <th>정산금액</th>
+                        <th>처리상태</th>
+                        <th>메모</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {#if logLists.length === 0}
+                        <tr>
+                            <td colspan="9" class="no_data">등록된 데이터가 없습니다.</td>
+                        </tr>
+                    {:else}
+                        {#each logLists as log, index}
+                            <tr>
+                                <td>{totalCount - ((currentPage - 1) * pageSize) - index}</td>
+                                <td class="text_ellipsis">{log.processor_id || ''}</td>
+                                <td class="text_ellipsis">{log.processor_name || ''}</td>
+                                <td class="text_ellipsis">{log.store_name || ''}</td>
+                                <td class="wd_date">{log.date || ''}</td>
+                                <td class="text_ellipsis">{log.ip || ''}</td>
+                                <td class="text_right">{log.settlement_amount ? Number(log.settlement_amount).toLocaleString() : ''}원</td>
+                                <td>
+                                    {#if log.status === '0'}
+                                        <span class="status_complete">완료</span>
+                                    {:else if log.status === '1'}
+                                        <span class="status_pending">대기</span>
+                                    {:else if log.status === '2'}
+                                        <span class="status_failed">실패</span>
+                                    {:else}
+                                        <span class="status_unknown">알 수 없음</span>
+                                    {/if}
+                                </td>
+                                <td class="text_ellipsis">{log.memo || ''}</td>
+                            </tr>
+                        {/each}
+                    {/if}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- 목록으로 버튼 -->
+<div class="list_box">
+    <button 
+        class="defer_btn" 
+        type="button" 
+        on:click={() => window.history.back()}
+    >
+        목록으로
+    </button>
+</div>
+
+<!-- 페이지네이션 -->
+<LogsPagination 
+    {currentPage}
+    {totalPages}
+    onPageChange={handlePageChange}
+/>
+
+<style>
+    .loading_wrap {
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .table_responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .text_ellipsis {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .text_right {
+        text-align: right;
+    }
+    
+    .status_complete {
+        color: #28a745;
+        font-weight: 500;
+    }
+    
+    .status_pending {
+        color: #ffc107;
+        font-weight: 500;
+    }
+    
+    .status_failed {
+        color: #dc3545;
+        font-weight: 500;
+    }
+    
+    .status_unknown {
+        color: #6c757d;
+        font-weight: 500;
+    }
+    
+    .col_no { width: 8%; }
+    .col_id { width: 12%; }
+    .col_name { width: 10%; }
+    .col_store { width: 15%; }
+    .col_date { width: 15%; }
+    .col_ip { width: 12%; }
+    .col_amount { width: 12%; }
+    .col_status { width: 8%; }
+    .col_memo { width: 18%; }
+    
+    @media (max-width: 768px) {
+        .table_responsive {
+            font-size: 0.8rem;
+        }
+        
+        .text_ellipsis {
+            max-width: 80px;
+        }
+        
+        .col_no { width: 6%; }
+        .col_id { width: 10%; }
+        .col_name { width: 8%; }
+        .col_store { width: 12%; }
+        .col_date { width: 15%; }
+        .col_ip { width: 10%; }
+        .col_amount { width: 10%; }
+        .col_status { width: 6%; }
+        .col_memo { width: 23%; }
+    }
+</style>

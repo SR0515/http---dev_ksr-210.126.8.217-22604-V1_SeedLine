@@ -1,0 +1,479 @@
+/* 원본 LeftMenu CSS를 정확히 복제 */
+/* VARIABLES CSS */
+:root {
+    --mnav--width: 40px;
+    --nav--width: 92px;
+
+    /* Colores */
+    --first-color: #971523;
+    --bg-color: #12192c;
+    --sub-color: #b6cefc;
+    --white-color: #fff;
+
+    /* Fuente y tipografia */
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+
+    /* z index */
+    --z-fixed: 100;
+}
+
+/* BASE */
+*, ::before, ::after {box-sizing: border-box;}
+
+h1 {margin: 0;}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {text-decoration: none; color: inherit;}
+
+/* NAV */
+.nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.nav__brand {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.menu_icon{
+    width: 20px;
+    height: 20px; 
+    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(183deg) brightness(106%) contrast(101%);
+}
+.mg_r{margin-right: 12px;}
+
+.menu_icon.mg_r{margin-right: 12px;margin-left:-3px;}
+
+.nav__toggle {
+    font-size: 1.25rem;
+    margin: 0.75rem;
+    cursor: pointer;
+}
+
+.nav__logo {
+    color: var(--white-color);
+    font-weight: 600;
+    margin: 0 15px;
+}
+
+.nav__link {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    column-gap: .75rem;
+    padding: .75rem;
+    color: var(--white-color) !important;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.nav__link:hover {
+    background-color: var(--first-color);
+    text-decoration: none !important;
+}
+
+.nav__icon {
+     width: 20px;
+    height: 20px; 
+    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(183deg) brightness(106%) contrast(101%);
+}
+
+.nav_name {
+    font-size: var(--small-font-size);
+}
+
+/* Active links menu */
+.active {
+    background-color: var(--first-color);
+}
+
+.a_active_menu {
+    background-color: var(--first-color) !important;
+}
+
+/* l NAV */
+.l-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--nav--width);
+    height: 100vh;
+    background: #212121;
+    color: var(--white-color);
+    padding: 1.5rem 1.6rem 2rem;
+    transition: .5s;
+    z-index: var(--z-fixed);
+}
+
+/* 아코디언 관련 스타일 - Bootstrap 기본 스타일 완전 재정의 */
+.l-navbar .accordion {
+    --bs-accordion-border-width: 0;
+    --bs-accordion-border-color: transparent;
+}
+
+.l-navbar .accordion-item {
+    margin-bottom: 1.0rem;
+    background: none !important;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+.l-navbar .accordion-button {
+    background: none !important; 
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+    padding: 0.75rem;
+    box-shadow: none !important;
+    transition: background-color 0.3s ease, border-radius 0.3s ease !important;
+}
+
+.l-navbar .accordion-button:not(.collapsed) {
+    background-color: var(--first-color) !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.l-navbar .accordion-button:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* 아코디언 버튼 focus 시 테두리 제거 */
+.l-navbar .accordion-button:focus-visible {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.l-navbar .accordion-collapse {
+    border: none !important;
+    border-top: none !important;
+}
+
+.l-navbar .accordion-body {
+    padding-top: 0px; 
+    border: none !important;
+    border-top: none !important;
+    background: none !important;
+}
+
+.l-navbar .accordion-body ul {
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.l-navbar .accordion-body ul li {
+    padding: 0.35rem 1.5rem;
+    border: none !important;
+    list-style: none !important;
+    display: block;
+    width: 100%;
+    clear: both;
+}
+
+.l-navbar .accordion-body ul li a {
+    font-size: 0.85rem;
+    color: #fff !important;
+    border: none !important;
+    text-decoration: none !important;
+    display: block;
+    width: 100%;
+    position: relative;
+    line-height: 1.4;
+    padding: 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 알림 마크가 텍스트와 겹치지 않도록 */
+.l-navbar .accordion-body ul li a .info_mark,
+.l-navbar .accordion-body ul li a .level_info_mark,
+.l-navbar .accordion-body ul li a .c_count {
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.accordion-button:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.accordion-button.active_menu {
+    background-color: var(--first-color) !important;
+    color: #fff !important;
+    font-weight: 500;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* 아코디언 버튼 활성화 추가 스타일 - active_menu 클래스만 있을 때 */
+.l-navbar .accordion-button.active_menu {
+    background-color: var(--first-color) !important;
+    color: #fff !important;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+/* active_menu가 없으면 기본 스타일 */
+.l-navbar .accordion-button:not(.active_menu) {
+    background-color: transparent !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+}
+
+
+/* 아코디언 버튼 collapsed 상태일 때는 기본 스타일 적용 */
+.l-navbar .accordion-button.collapsed {
+    background-color: transparent !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* 원본과 동일한 아코디언 활성화 스타일 - active_menu 클래스가 있고 열린 상태일 때만 */
+.l-navbar .accordion-button.active_menu:not(.collapsed) {
+    background-color: var(--first-color) !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+.l-navbar .accordion-item .show {
+    background-color: var(--first-color) !important;
+    border-radius: 0px 0px 0.5rem 0.5rem;
+}
+
+.accordion-button.collapsed {
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+    white-space: nowrap;
+    letter-spacing: -1px !important;
+    font-weight: 400;
+}
+
+/* 아코디언 화살표 - CSS 변수 사용 */
+.l-navbar .accordion-button {
+    --arrow-rotation: 0deg;
+}
+
+.l-navbar .accordion-button::after {
+    content: "" !important;
+    display: block !important;
+    width: 24px !important;
+    height: 24px !important;
+    position: absolute !important;
+    right: 15px !important;
+    top: 50% !important;
+    background-image: url('/img/dote_select_bg.png') !important;
+    background-repeat: no-repeat !important;
+    background-size: 24px 24px !important;
+    background-position: center !important;
+    transition: transform 0.2s ease !important;
+    margin: 0 !important;
+    transform: translateY(-50%) rotate(var(--arrow-rotation)) !important;
+}
+
+
+/* active_menu 클래스가 없으면 화살표 아래쪽 (비활성화 상태) - 기본값 */
+
+.accordion-button{
+    border-radius:0.5rem 0.5rem 0px 0px;
+}
+
+.accordion-item .show{
+    border-radius: 0px 0px 0.5rem 0.5rem;
+    background-color: var(--first-color);
+}
+
+/* 기본 상태 */
+.accordion-body a {
+    transition: background-color 0.6s ease, padding 0.8s ease;
+    padding: 10px 15px;
+    display: block;
+}
+
+.accordion-collapse {
+    transition: max-height 0.2s ease, opacity 0.4s ease;
+    overflow: hidden;
+}
+
+.accordion-collapse.show {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.accordion-collapse:not(.show) {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* 파트너 추가 버튼 */
+.partner_setting_btn{
+    display: inline-block; 
+    margin-left: 10px; 
+    font-size: 1.25rem; 
+    font-weight: 500; 
+    transition: transform 0.3s ease;
+}
+
+/* 알림 마크 */
+.info_mark{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #ff6600;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.level_info_mark{
+    background: #ff0000;
+}
+
+.c_count{
+    background: #ff6600;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 1px 5px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+@media (min-width:992px) {
+    body{
+        position: relative;
+        margin: 0;
+        padding: 2rem 0 0 6.75rem;
+        font-family: var(--body-font);
+        font-size: var(--normal-font-size);
+        transition: .5s;
+    }
+
+    /* Expander menu */
+    .expander {
+        width: calc(var(--nav--width) + 9.25rem);
+        padding: 1.5rem 1.0rem 2rem;
+    }
+  
+    /* Add padding body*/
+    .body-pd {
+        padding: 1rem 0 0 16rem;
+    }
+}
+
+@media (max-width:991px) {
+    .l-navbar {
+        width: var(--mnav--width); /* 원래 너비로 복원 */
+        padding:1.5rem 0px;
+    }
+  
+    /* Expander menu */
+    .l-navbar.expander {
+        width: calc(var(--nav--width) + 9.25rem); /* 원래 너비로 복원 */
+    }
+    
+    .nav__icon, .menu_icon{
+        width:18px;
+        height:18px;
+    }
+    
+    .nav__brand .menu_icon{
+        margin-left:8px;
+        width:22px;
+        height:22px;
+    }
+    
+    .nav__brand{
+        margin-bottom:5px;
+    }
+    
+    .moblie_menu{
+        margin-left:-7px;
+    }
+    
+}
+
+/* body-collapsed 스타일 추가 */
+.body-collapsed {
+    padding-left: 3rem !important;
+}
+
+/* 아코디언 메뉴 아이콘 위치 조정 - 슬림/확장 상태 모두 적용 */
+.accordion-button .menu_icon {
+    margin-left: 1px;
+}
+
+/* 사이드바가 닫혔을 때 마우스오버만 비활성화 (클릭은 가능) */
+.l-navbar:not(.expander) .nav__link:hover {
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+.l-navbar:not(.expander) .accordion-button:hover {
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+.l-navbar:not(.expander) .accordion-button.active_menu:hover {
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+.l-navbar:not(.expander) .accordion-button.collapsed:hover {
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+
+.l-navbar.expander .accordion-button:hover {
+    background-color: var(--first-color) !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+}
+
+/* active_menu 클래스가 있을 때만 hover 시 활성화 색상 */
+.l-navbar .accordion-button.active_menu:hover {
+    background-color: var(--first-color) !important;
+    color: #fff !important;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+/* collapsed 상태에서 hover 시 기본 hover 효과 */
+.l-navbar .accordion-button.collapsed:hover {
+    background-color: var(--first-color) !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+}

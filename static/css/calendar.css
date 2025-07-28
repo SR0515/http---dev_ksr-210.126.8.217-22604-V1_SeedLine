@@ -1,0 +1,42 @@
+/*달력*/
+/* .calendar_wrap{padding: 0px 1.8rem 2.2rem 1.8rem;} */
+.calendar_pcircle{text-align:left;}
+.calendar_pcircle li{display:inline-block;margin:0px 3px;font-size:0.85rem;}
+.calendar_pcircle li span{width:8px;height:8px;border-radius:300px;display:inline-block;margin-right:5px;}
+.calendar_list_t{margin-top:23px;margin-bottom:15px;}
+.green_circle{color:#30830c;}
+.black_circle{color:#555;}
+.red_circle{color:#eb3606;}
+/* 달력 만들기*/
+.calendar_wrap .dateHead div {border-bottom:1px solid #f3f3f3;color: #666;text-align: center;margin:2px;border-radius: 0px;/*float:left;   width:14%;margin:2px;height:40px;line-height:35px;*/margin-bottom:5px;}
+.calendar_wrap .grid {display: flex;justify-content: space-between;display: grid;grid-template-columns: repeat(7, 1fr);grid-gap: 5px;margin-top:14px;}
+.calendar_wrap .grid div {width:100%;
+  padding: 0.2rem;
+  cursor: pointer;}
+.calendar_wrap .dateBoard div {color: #777;font-weight: 400;min-height: 6rem;
+  /* padding: .7rem .7rem; */
+  border-radius:3px;border: 1px solid #eee;font-size:0.75rem;}
+.calendar_wrap .noColor {background: #f6f6f6;}
+/* 좌우 버튼 */
+.calendar_wrap .header h2{font-size:1.70rem; text-align: center; margin-top: 5px;}
+.calendar_wrap .header {position:relative;}
+.calendar_wrap .header .btnc {display: block;width: 15px;height: 15px;border: 3px solid #666;border-width: 3px 3px 0 0;cursor: pointer;margin-top:20px;position:absolute;right:0px;top:40px;}
+.calendar_wrap .header .prevDay {transform: rotate(-135deg);margin-right:25px; }
+.calendar_wrap .header .nextDay {transform: rotate(45deg);}
+/* ---- */
+.calendar_wrap .dateBoard div p{font-size:0.75rem;text-align:right;font-weight:400;}
+
+
+/*색상통일*/
+.point_color{color:#226ad8;}
+.point_bg{background:#226ad8;color:#fff;}
+.gray_t{color:#666 ! important;}
+.skyblue_t{color:#226ad8 ! important;}
+.blue_t{color:#003a92 ! important;}
+.red_t{color:#eb3606 ! important;}
+.bgray_t{color:#555 ! important;}
+.black_t{color:#222 ! important;}
+.green_t{color:#35ab01 ! important;}
+.green_bg{background:#35ab01 ! important;}
+.black_bg{background:#555 ! important;}
+.red_bg{background:#eb3606 ! important;}

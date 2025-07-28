@@ -1,0 +1,186 @@
+<script lang="ts">
+    import { onMount, onDestroy } from 'svelte';
+    import LogsSearch from '$lib/components/logs/LogsSearch.svelte';
+    import LogsPagination from '$lib/components/logs/LogsPagination.svelte';
+    import LogsLoadingSpinner from '$lib/components/logs/LogsLoadingSpinner.svelte';
+    import LogsErrorBoundary from '$lib/components/logs/LogsErrorBoundary.svelte';
+    import { getUserTypeLabel, getUserRateLabel, getLoginStatusLabel } from '$lib/utils/formatters';
+    import { LOGIN_SEARCH_OPTIONS } from '$lib/constants/searchOptions';
+    import { useLogData } from '$lib/hooks/useLogData';
+    import type { LoginLogData } from '$lib/types/logs';
+    
+    // 커스텀 훅 사용
+    const logDataStore = useLogData('LoginLog', 'id');
+    
+    // 리액티브 스토어 구독
+    $: ({ loading, error, data: logLists, pagination, searchParams } = $logDataStore);
+    
+    // 포매터 함수들 (재생성 방지)
+    const formatters = {
+        getUserTypeLabel,
+        getUserRateLabel,
+        getLoginStatusLabel
+    };
+    
+    // 검색 실행
+    function handleSearch() {
+        logDataStore.search({
+            searchSelect: searchParams.searchSelect,
+            searchText: searchParams.searchText,
+            typeSelect: searchParams.typeSelect,
+            startDate: searchParams.startDate,
+            endDate: searchParams.endDate
+        });
+    }
+    
+    // 검색 초기화
+    function handleReset() {
+        logDataStore.reset();
+    }
+    
+    // 페이지 크기 변경
+    function handlePageSizeChange() {
+        logDataStore.changePageSize(pagination.pageSize);
+    }
+    
+    // 페이지 이동
+    function handlePageChange(page: number) {
+        logDataStore.changePage(page);
+    }
+    
+    // 재시도 함수
+    function handleRetry() {
+        logDataStore.loadData();
+    }
+    
+    onMount(() => {
+        logDataStore.loadData();
+    });
+    
+    onDestroy(() => {
+        logDataStore.destroy();
+    });
+</script>
+
+
+<!-- 검색 영역 -->
+<LogsSearch 
+    bind:searchSelect={searchParams.searchSelect}
+    bind:searchText={searchParams.searchText}
+    bind:typeSelect={searchParams.typeSelect}
+    bind:startDate={searchParams.startDate}
+    bind:endDate={searchParams.endDate}
+    bind:pageSize={pagination.pageSize}
+    onSearch={handleSearch}
+    onReset={handleReset}
+    onPageSizeChange={handlePageSizeChange}
+    searchOptions={LOGIN_SEARCH_OPTIONS}
+    showTypeSelect={true}
+/>
+
+<!-- 로딩 및 에러 상태 -->
+<LogsLoadingSpinner {loading} message="로그인 로그 데이터를 불러오는 중..." />
+<LogsErrorBoundary {error} onRetry={handleRetry} />
+
+<!-- 테이블 영역 -->
+<section class="borderbox_table">
+    <div id="table_wrap" class="table_wrap">
+        <table class="table_list" width="100%">
+            <caption>관리자 로그인 로그 테이블</caption>
+            
+            <colgroup>
+                <col style="width: 6.67% !important;">
+                <col style="width: 12.5% !important;">
+                <col style="width: 12.5% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 12.5% !important;">
+                <col style="width: 8.33% !important;">
+                <col style="width: 10% !important;">
+                <col style="width: 10% !important;">
+                <col style="width: 6.67% !important;">
+                <col style="width: 7.14% !important;">
+            </colgroup>
+            
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>아이디</th>
+                    <th>사용자명</th>
+                    <th>타입</th>
+                    <th>등급</th>
+                    <th>시도일자</th>
+                    <th>IP</th>
+                    <th>브라우저</th>
+                    <th>URL</th>
+                    <th>로그인 상태</th>
+                    <th>실패 사유</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {#if logLists.length === 0}
+                    <tr>
+                        <td colspan="11" class="no_data">등록된 데이터가 없습니다.</td>
+                    </tr>
+                {:else}
+                    {#each logLists as log, index (log.id + log.date)}
+                        <tr>
+                            <td>{pagination.totalCount - ((pagination.currentPage - 1) * pagination.pageSize) - index}</td>
+                            <td>{log.id || ''}</td>
+                            <td>{log.name || ''}</td>
+                            <td>{formatters.getUserTypeLabel(log.type)}</td>
+                            <td>{formatters.getUserRateLabel(log.rate)}</td>
+                            <td>{log.date || ''}</td>
+                            <td>{log.ip || ''}</td>
+                            <td>{log.browser || ''}</td>
+                            <td>{log.url || ''}</td>
+                            <td>
+                                {#if log.login_status}
+                                    {@const status = formatters.getLoginStatusLabel(log.login_status)}
+                                    <span style="color: {status.color};">{status.text}</span>
+                                {/if}
+                            </td>
+                            <td>{log.fail_detail || ''}</td>
+                        </tr>
+                    {/each}
+                {/if}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 목록으로 버튼
+<div class="list_box" style="text-align: center; padding: 20px 0;">
+    <button 
+        class="defer_btn" 
+        type="button" 
+        on:click={() => window.history.back()}
+        style="background: #555; color: white; border: 1px solid #555; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; outline: none; transition: all 0.2s ease;"
+        on:mouseenter={(e) => {
+            e.target.style.background = '#333';
+            e.target.style.borderColor = '#333';
+        }}
+        on:mouseleave={(e) => {
+            e.target.style.background = '#555';
+            e.target.style.borderColor = '#555';
+        }}
+    >
+        목록으로
+    </button>
+</div> -->
+
+<!-- 페이지네이션 -->
+<LogsPagination 
+    currentPage={pagination.currentPage}
+    totalPages={pagination.totalPages}
+    onPageChange={handlePageChange}
+/>
+
+<style>
+    .no_data {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+    }
+</style>

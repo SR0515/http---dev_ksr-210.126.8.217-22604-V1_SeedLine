@@ -1,0 +1,209 @@
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import LogsSearch from '$lib/components/logs/LogsSearch.svelte';
+    import LogsPagination from '$lib/components/logs/LogsPagination.svelte';
+    import { 
+        fetchLogData, 
+        validateDateRange, 
+        formatNumber
+    } from '$lib/utils/logsUtils';
+    
+    // 상태 관리
+    let loading = false;
+    let logLists: any[] = [];
+    let currentPage = 1;
+    let totalPages = 1;
+    let totalCount = 0;
+    let pageSize = 10;
+    
+    // 검색 상태
+    let searchSelect = 'id';
+    let searchText = '';
+    let typeSelect = '';
+    let startDate = '';
+    let endDate = '';
+    
+    // 데이터 조회
+    async function loadLogData() {
+        if (!validateDateRange(startDate, endDate)) {
+            return;
+        }
+        
+        try {
+            loading = true;
+            const result = await fetchLogData('S_commission_log', currentPage, pageSize, {
+                searchSelect,
+                searchText,
+                typeSelect,
+                startDate,
+                endDate
+            });
+            
+            logLists = result.data;
+            totalCount = result.pagination.totalCount;
+            totalPages = Math.ceil(totalCount / pageSize);
+        } catch (error) {
+            console.error('로그 데이터 로드 실패:', error);
+        } finally {
+            loading = false;
+        }
+    }
+    
+    // 검색 실행
+    function handleSearch() {
+        currentPage = 1;
+        loadLogData();
+    }
+    
+    // 검색 초기화
+    function handleReset() {
+        searchText = '';
+        searchSelect = 'id';
+        typeSelect = '';
+        startDate = '';
+        endDate = '';
+        currentPage = 1;
+        loadLogData();
+    }
+    
+    // 페이지 크기 변경
+    function handlePageSizeChange() {
+        currentPage = 1;
+        loadLogData();
+    }
+    
+    // 페이지 이동
+    function handlePageChange(page: number) {
+        currentPage = page;
+        loadLogData();
+    }
+    
+    onMount(() => {
+        loadLogData();
+    });
+</script>
+
+
+<!-- 검색 영역 -->
+<section class="borderbox form_view">
+    <div class="title_wrap">
+        <h5 class="page_title">로그 - 가맹점 정산수수료 수정</h5>
+    </div>
+    
+    
+    <LogsSearch 
+        bind:searchSelect
+        bind:searchText
+        bind:typeSelect
+        bind:startDate
+        bind:endDate
+        bind:pageSize
+        onSearch={handleSearch}
+        onReset={handleReset}
+        onPageSizeChange={handlePageSizeChange}
+    />
+</section>
+
+<!-- 로딩 상태 -->
+{#if loading}
+    <div class="loading_wrap">
+        <p>데이터를 불러오는 중입니다...</p>
+    </div>
+{/if}
+
+<!-- 테이블 영역 -->
+<section class="borderbox_table">
+    <div id="table_wrap" class="table_wrap">
+        <table class="table_list" width="100%">
+            <caption>가맹점 정산수수료 수정 로그 테이블</caption>
+            
+            <colgroup>
+                <col style="width: 8% !important;">
+                <col style="width: 12% !important;">
+                <col style="width: 12% !important;">
+                <col style="width: 15% !important;">
+                <col style="width: 15% !important;">
+                <col style="width: 10% !important;">
+                <col style="width: 10% !important;">
+                <col style="width: 10% !important;">
+                <col style="width: 8% !important;">
+            </colgroup>
+            
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>수정자 ID</th>
+                    <th>수정자명</th>
+                    <th>가맹점명</th>
+                    <th>수정일자</th>
+                    <th>IP</th>
+                    <th>수정전 수수료</th>
+                    <th>수정후 수수료</th>
+                    <th>메모</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {#if logLists.length === 0}
+                    <tr>
+                        <td colspan="9" class="no_data">등록된 데이터가 없습니다.</td>
+                    </tr>
+                {:else}
+                    {#each logLists as log, index}
+                        <tr>
+                            <td>{totalCount - ((currentPage - 1) * pageSize) - index}</td>
+                            <td>{log.editor_id || ''}</td>
+                            <td>{log.editor_name || ''}</td>
+                            <td>{log.store_name || ''}</td>
+                            <td>{log.date || ''}</td>
+                            <td>{log.ip || ''}</td>
+                            <td>{log.before_commission ? formatNumber(log.before_commission) : ''}%</td>
+                            <td>{log.after_commission ? formatNumber(log.after_commission) : ''}%</td>
+                            <td>{log.memo || ''}</td>
+                        </tr>
+                    {/each}
+                {/if}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 목록으로 버튼 -->
+<div class="list_box" style="text-align: center; padding: 20px 0;">
+    <button 
+        class="defer_btn" 
+        type="button" 
+        on:click={() => window.history.back()}
+        style="background: #dc3545; color: white; border: 1px solid #dc3545; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; outline: none; transition: all 0.2s ease;"
+        on:mouseenter={(e) => {
+            e.target.style.background = '#c82333';
+            e.target.style.borderColor = '#c82333';
+        }}
+        on:mouseleave={(e) => {
+            e.target.style.background = '#dc3545';
+            e.target.style.borderColor = '#dc3545';
+        }}
+    >
+        목록으로
+    </button>
+</div>
+
+<!-- 페이지네이션 -->
+<LogsPagination 
+    {currentPage}
+    {totalPages}
+    onPageChange={handlePageChange}
+/>
+
+<style>
+    .loading_wrap {
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .no_data {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+    }
+</style>

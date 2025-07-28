@@ -1,0 +1,844 @@
+.card_section{margin: 1rem 0;}
+.commission_red_bg{background: #ffecec !important; border-bottom: 1px solid #fff !important;}
+.commission_red_bg:last-child{border: 0 !important;}
+
+/* 페이지 헤더 */
+.page-header {text-align: center; margin-bottom: 40px; animation: fadeInDown 0.8s ease;}
+.page-header h1 {font-size: 36px; font-weight: 700; color: #333; margin-bottom: 8px;}
+.page-header p {font-size: 16px; color: #666; font-weight: 400;}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 카드 그리드 */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 24px;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 가맹점 카드 */
+.merchant-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    animation: cardSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+}
+
+@keyframes cardSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.merchant-card.no-commission {background: #fff;}
+.merchant-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ffcac9;
+    z-index: 10;
+}
+.merchant-card:hover .status-bar {height: 6px; box-shadow: 0 2px 10px rgba(255, 71, 87, 0.5);}
+
+/* 수수료 영역에 마우스가 있을 때 카드 호버 효과 차단 */
+.commission-section:hover {cursor: default;}
+.merchant-card:has(.commission-section:hover) {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-color: #e0e0e0;
+}
+.merchant-card:has(.commission-section:hover) .status-bar {height: 4px; box-shadow: none;}
+.merchant-card:has(.commission-section:hover) .merchant-name {color: #333;}
+.merchant-card.inactive {opacity: 0.6; filter: grayscale(0.5);}
+
+/* 상태 표시 바 */
+.status-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #bd283b;
+    transition: all 0.3s ease;
+    z-index: 11;
+    border-radius: 16px 16px 0 0;
+}
+.merchant-card.inactive .status-bar {background: linear-gradient(90deg, #9e9e9e 0%, #bdbdbd 100%);}
+
+/* 수수료 상태 배너 - 중앙 배치로 변경 */
+.commission-status-banner {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 12px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    animation: bannerSlideDown 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 12;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+}
+
+@keyframes bannerSlideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+.commission-status-banner.warning {background: rgba(255, 248, 225, 0.98); color: #f57c00; border: 1px solid #ffcc80;}
+
+.commission-status-banner.error {
+    background: rgba(255, 235, 238, 0.98);
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* 수수료 설정 필요 배너 - 상단 바로 아래 위치 */
+.commission-required-banner {
+    position: absolute;
+    top: 4px;
+    left: 20px;
+    background: linear-gradient(135deg, #ff6d00, #ff9800);
+    color: white;
+    padding: 2px 8px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    animation: ribbonSlide 0.8s ease-out;
+    z-index: 12;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 2px 6px rgba(255, 109, 0, 0.3);
+    transform-origin: top center;
+}
+
+@keyframes ribbonSlide {
+    0% {
+        transform: scaleY(0) translateY(-10px);
+        opacity: 0;
+    }
+    50% {
+        transform: scaleY(1.1) translateY(0);
+    }
+    100% {
+        transform: scaleY(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.commission-required-banner i {
+    font-size: 8px;
+}
+
+/* 카드 상단 영역 */
+.card-top-section {
+    padding: 16px 20px 16px; /* 하단 패딩 조정 */
+    border-bottom: 1px solid #f0f0f0;
+    background: #fafafa;
+    flex-shrink: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 16px 16px 0 0;
+}
+
+.card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.card-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: #666;
+}
+
+.card-number {
+    font-weight: 600;
+    color: #bd283b;
+    font-size: 14px;
+}
+
+.merchant-id {color: #666;}
+
+/* 저장 버튼 */
+.commission-save-btn {
+    min-width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    border: 2px solid #bd283b;
+    background: #fff;
+    color: #bd283b;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.commission-save-btn .save-text {
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.commission-save-btn:hover:not(:disabled) {
+    background: #bd283b;
+    color: white;
+}
+
+/* 비활성화 상태 강화 */
+.commission-save-btn:disabled,
+.commission-save-btn.disabled,
+.merchant-card.inactive .commission-save-btn {
+    background: #e0e0e0 !important;
+    border-color: #bdbdbd !important;
+    color: #9e9e9e !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.commission-save-btn:disabled:hover,
+.commission-save-btn.disabled:hover,
+.merchant-card.inactive .commission-save-btn:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    background: #e0e0e0 !important;
+    color: #9e9e9e !important;
+}
+
+.commission-save-btn.modified {
+    background: #fff8e1;
+    border-color: #ffc107;
+    color: #f57c00;
+}
+
+.commission-save-btn.saving {
+    background: #e3f2fd;
+    border-color: #2196f3;
+    color: #1976d2;
+    pointer-events: none;
+}
+
+.commission-save-btn.saving i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.commission-save-btn.saved {
+    background: #e8f5e9;
+    border-color: #4caf50;
+    color: #388e3c;
+    animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(76, 175, 80, 0.3); }
+    100% { transform: scale(1); }
+}
+
+.commission-save-btn.pulse-animation {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { 
+        box-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+        transform: scale(1.05);
+    }
+}
+
+.commission-save-btn.shake-animation {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* 카드 메인 영역 */
+.card-main-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.merchant-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.inactive-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    background: #f5f5f5;
+    color: #757575;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.no-commission-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    background: #fff3e0;
+    color: #ff6d00;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+    border: 1px solid #ffcc80;
+    animation: warningPulse 2s ease-in-out infinite;
+}
+
+@keyframes warningPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* 총 수수료 표시 */
+.total-commission {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: linear-gradient(135deg, #eb465b 0%, #9b1628 100%);
+    color: white;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(255, 23, 68, 0.2);
+    transition: all 0.3s;
+}
+.total-commission .fas .fa-percentage{font-size: 15px;}
+.total-commission span.total-value{font-size: 18px; font-weight: 600;}
+
+
+.total-commission.mismatched {
+    background: linear-gradient(135deg, #ff6d00 0%, #ff9800 100%);
+    box-shadow: 0 2px 10px rgba(255, 109, 0, 0.3);
+    animation: warningPulse 1.5s ease-in-out infinite;
+}
+
+.merchant-card.inactive .total-commission {
+    background: linear-gradient(135deg, #9e9e9e 0%, #bdbdbd 100%);
+}
+
+/* 계층 구조 경로 - 4개씩 3줄 고정 레이아웃 */
+.hierarchy-path-container {
+    position: relative;
+    height: 84px; /* 높이 감소 */
+    overflow: hidden;
+    padding: 6px 4px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.hierarchy-path {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 9px;
+    color: #666;
+    width: 100%;
+}
+
+.path-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.path-item {
+    padding: 4px 5px; /* 패딩 감소 */
+    background: #fff;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid #f0f0f0;
+    color: #444;
+    cursor: pointer;
+    font-size: 11px;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    min-height: 22px; /* 높이 감소 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    position: relative;
+    width: 72px;
+    flex-shrink: 0;
+    margin: 0 1px;
+    user-select: none;
+}
+
+.path-item.zero-commission {
+    color: #999;
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+}
+
+.path-item.zero-commission:hover {
+    background: #e0e0e0;
+    color: #666;
+    border-color: #bdbdbd;
+    transform: translateY(-1px);
+}
+
+.path-item:hover {
+    background: #971523;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(255, 23, 68, 0.2);
+    z-index: 10;
+    border-color: #971523;
+}
+
+.path-item:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 1px 3px rgba(255, 23, 68, 0.2);
+}
+
+.merchant-card.inactive .path-item.zero-commission {
+    color: #bdbdbd;
+    background: #f0f0f0;
+    border-color: #e0e0e0;
+}
+
+.path-arrow {
+    color: #bd283b;
+    font-weight: bold;
+    font-size: 6px;
+    opacity: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10px;
+    height: 22px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0 2px;
+}
+
+.path-empty {
+    width: 72px;
+    height: 22px;
+    visibility: hidden;
+    flex-shrink: 0;
+    margin: 0 1px;
+}
+
+/* 단계 표시 */
+.hierarchy-level-count {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #666;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(255, 23, 68, 0.2);
+}
+
+/* 수수료 영역 - 스크롤 컨테이너 */
+.commission-wrapper {
+    position: relative;
+    background: #fafafa;
+    padding: 20px;
+    flex-shrink: 0;
+    overflow: hidden; /* 상하 스크롤 방지 */
+}
+
+.commission-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    overflow-y: hidden; /* 상하 스크롤 방지 */
+    height: 125px;
+    white-space: nowrap;
+    scrollbar-color: #f8b0b9 #fff;
+}
+
+/* 수수료 그리드 */
+.commission-grid {
+    display: flex;
+    gap: 12px;
+    min-width: fit-content;
+    align-items: center;
+    height: 100%;
+}
+
+/* 커스텀 스크롤바 */
+.commission-section::-webkit-scrollbar {height: 6px; background: transparent;}
+.commission-section::-webkit-scrollbar-track {background: #f0f0f0; border-radius: 3px;}
+.commission-section::-webkit-scrollbar-thumb {background: #ff6b7a; border-radius: 3px;}
+.commission-section::-webkit-scrollbar-thumb:hover {background: #ff1744;}
+
+
+/* 스크롤 인디케이터 - wrapper 기준 고정 */
+.scroll-indicator {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 32px;
+    background: linear-gradient(135deg, #eb465b 0%, #9b1628 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 15;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.scroll-indicator.left {left: 2px; border-radius: 0 8px 8px 0;}
+.scroll-indicator.right {right: 2px; border-radius: 8px 0 0 8px;}
+.scroll-indicator.visible {opacity: 1; pointer-events: auto;}
+.scroll-indicator:hover {
+    width: 18px;
+    background: linear-gradient(135deg, #eb465b 0%, #9b1628 100%);
+    box-shadow: 0 3px 8px rgba(255, 23, 68, 0.3);
+}
+
+.scroll-indicator:active {transform: translateY(-50%) scale(0.9);}
+
+/* 수수료 아이템 - 적당한 호버 효과 */
+.commission-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid #e0e0e0;
+    min-width: 110px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.commission-item:hover {
+    background: #fff7f9;
+    border-color: #ff6b7a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 23, 68, 0.1);
+}
+
+.commission-label {
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.commission-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.commission-input {
+    width: 65px;
+    padding: 6px 8px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    background: #fff;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* 스피너 버튼 완전 제거 */
+.commission-input::-webkit-inner-spin-button,
+.commission-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    display: none;
+}
+
+.commission-input[type=number] {-moz-appearance: textfield; appearance: textfield;}
+.commission-value .commission-input:read-only {background: #f1f1f1;}
+.commission-input:hover:not(:disabled) {
+    border-color: #ff6b7a;
+    background: #fff5f5;
+}
+
+.commission-input:focus {
+    outline: none;
+    border-color: #ff1744;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 23, 68, 0.1);
+}
+
+.commission-input:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+    color: #999;
+    border-color: #e0e0e0;
+}
+
+/* 클릭 시 하이라이트 효과 */
+.commission-input.highlighted {
+    border-color: #ff1744;
+    background: #fff5f5;
+    box-shadow: 0 0 0 3px rgba(255, 23, 68, 0.3), 0 0 10px rgba(255, 23, 68, 0.3);
+    animation: highlightPulse 0.5s ease;
+}
+
+.commission-input.highlighted:focus {
+    box-shadow: 0 0 0 4px rgba(255, 23, 68, 0.4), 0 0 15px rgba(255, 23, 68, 0.4);
+}
+
+/* 하이라이트된 아이템 전체 강조 */
+.commission-item:has(.commission-input.highlighted) {
+    background: #fff5f5;
+    border-color: #ff1744;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 23, 68, 0.2);
+    z-index: 10;
+}
+
+@keyframes highlightPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 23, 68, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 6px rgba(255, 23, 68, 0.2), 0 0 15px rgba(255, 23, 68, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 3px rgba(255, 23, 68, 0.3), 0 0 10px rgba(255, 23, 68, 0.3);
+    }
+}
+
+.commission-unit {
+    font-size: 14px;
+    color: #bd283b;
+    font-weight: 600;
+}
+
+/* 수수료 화살표 */
+.commission-arrow {
+    color: #ff6b7a;
+    font-weight: normal;
+    font-size: 14px;
+    opacity: 0.7;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 100%;
+    flex-shrink: 0;
+}
+.commission-arrow:hover {color: #971523; opacity: 1;}
+
+/* 카드 하단 영역 */
+.card-footer {
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #666;
+    flex-shrink: 0;
+    border-top: 1px solid #f0f0f0;
+    background: #fafafa;
+}
+.card-footer .created-date i {margin-right: 4px; color: #666;}
+.card-footer .updated-date i {margin-right: 4px; color: #666;}
+
+/* 알림 스타일 */
+.notification {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    padding: 12px 20px;
+    background-color: #333;
+    transform: translateX(-50%);
+    color: white;
+    border-radius: 6px;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 9999;
+    border:0;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.notification.error {background-color: #f44336;}
+.notification.info {background-color: #045eb8; }
+
+.commission_toast-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5) !important; 
+    backdrop-filter: blur(5px); 
+    z-index: 9998; 
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes notificationSlide {
+    from {
+        transform: translateX(100%) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOutUp {
+    to { 
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .card-grid {grid-template-columns: 1fr;}
+    .commission-item {min-width: 95px; padding: 14px 10px;}
+    .commission-input {width: 55px; font-size: 14px;}
+    .path-item { padding: 3px 4px; font-size: 10px; width: 60px; min-height: 18px;}   
+    .path-arrow {font-size: 8px; width: 10px; margin: 0 1px;} 
+    .hierarchy-path-container {height: 110px; }
+}
+
+@media (max-width:499px) {
+  .commission-save-btn {width: 70px;}
+  .total-commission span.total-value {font-size: 15px;}
+  .card-top-section, .commission-wrapper {padding: 16px 12px;}
+  .card-footer {padding: 14px 12px;}
+  .commission-required-banner {left: 10px;}
+  .commission-label {font-size: 12px;}
+  .hierarchy-path {padding-top: 1.5rem;}
+  .hierarchy-level-count {top: 0px; left: 6px; right: auto;}
+}
