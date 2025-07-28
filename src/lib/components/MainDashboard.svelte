@@ -116,7 +116,7 @@
                                     {:else}
                                         <h2 class="user_name">{userName}</h2>
                                     {/if}
-                                    <span>님, 안녕하세요.</span>
+                                    <span>님, 안녕하세요.2</span>
                                 </div>
                                 <div class="content_right">
                                     {#if classify == "2"}
